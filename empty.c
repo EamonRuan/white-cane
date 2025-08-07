@@ -67,8 +67,8 @@ void errorLog(int num);
 int main(void)
 {
     SYSCFG_DL_init();
-     NVIC_ClearPendingIRQ(UART_DTOF_INST_INT_IRQN);
-   // NVIC_EnableIRQ(UART_DTOF_INST_INT_IRQN);
+    NVIC_ClearPendingIRQ(UART_DTOF_INST_INT_IRQN);
+    // NVIC_EnableIRQ(UART_DTOF_INST_INT_IRQN);
     // OLED_Init();
     board_init();
 	//MPU6050_Init();
@@ -93,44 +93,33 @@ int main(void)
 	DL_DMA_setTransferSize(DMA, DMA_CH0_CHAN_ID,137);
 	DL_DMA_enableChannel(DMA, DMA_CH0_CHAN_ID);
 	NVIC_EnableIRQ(UART_DTOF_INST_INT_IRQN);
-	  DL_GPIO_clearPins(GPIO_Ultrasonic_PIN_B1_PORT, GPIO_Ultrasonic_PIN_B1_PIN);
-	  DL_GPIO_clearPins(GPIO_Ultrasonic_PIN_B0_PORT, GPIO_Ultrasonic_PIN_B0_PIN);
-	   DL_GPIO_clearPins(GPIO_Ultrasonic_PIN_B1_PORT, GPIO_Ultrasonic_PIN_B2_PIN);
+	DL_GPIO_clearPins(GPIO_Ultrasonic_PIN_B1_PORT, GPIO_Ultrasonic_PIN_B1_PIN);
+	DL_GPIO_clearPins(GPIO_Ultrasonic_PIN_B0_PORT, GPIO_Ultrasonic_PIN_B0_PIN);
+	DL_GPIO_clearPins(GPIO_Ultrasonic_PIN_B1_PORT, GPIO_Ultrasonic_PIN_B2_PIN);
 	     
 
 	 /* Don't remove this! */
-	   OLED_Init();
+	OLED_Init();
     Interrupt_Init();
 
     while (1) 
     {
-      
-	
         dtof_Task();
 		if(gps_flag)
 		{
-			
-			 parseGpsBuffer();//GPS处理功能
-		 printGpsBuffer();//打印串口信息
-		 gps_flag=0;
-		 time5s=0;
+			parseGpsBuffer();//GPS处理功能
+			printGpsBuffer();//打印串口信息
+			gps_flag=0;
+			time5s=0;
 		}
 		
-      
-       if(shidu_flag==1)
-       {
-
-           
+      	if(shidu_flag==1)
+    	{
           shidu_flag=0;
           shidutime=0;
-        humidity_GetStatus();
-       }
-     
-     
-      
-        
-      
-     }
+      	  humidity_GetStatus();
+        }
+    }
 }
 // void UART_DTOF_INST_IRQHandler(void)
 // {
@@ -347,44 +336,37 @@ void TIMER_MPU6050_INST_IRQHandler(void)
 {
     
 	time5s++;
-     shidutime++;
-     if(shidutime>=20)
-     {
+    shidutime++;
+    if(shidutime>=20)
+    {
         shidutime=0;
         shidu_flag=1;
-     }
-   if(time5s>=100)
-   {
-	gps_flag=1;
-	time5s=0;
-
-   }
-   if(r_flag==1)
-   {	zx_flag=1;
+    }
+  	if(time5s>=100)
+    {
+		gps_flag=1;
+		time5s=0;
+ 	}
+    if(r_flag==1)
+    {	
+		zx_flag=1;
 		rlstime++;
 		if(rlstime>=40)
-			{
+		{
 			rlstime=0;
 			r_flag=0;
 			zx_flag=0;
-
-			}
-
+		}
    }
-   if(l_flag==1)
-   {
+    if(l_flag==1)
+    {
 		zx_flag=1;
 		llstime++;
 		if(llstime>=40)
-			{
+		{
 			llstime=0;
 			l_flag=0;
 			zx_flag=0;
-
-			}
-
+		}
    }
-
 }
-
-
