@@ -1,41 +1,11 @@
-## Example Summary
+我国现有视力残疾者约3780.7万人，其中完全失明者超1730万，相当于每百人中就有一位存在视障问题。但在公共场合却少见视障人士，其主要原因在于出行困难。为改善这一现状，研发团队推出了一款智能导盲设备。其核心采用 LP-MSPM0G3507 微处理器，并集成 摄像头、激光雷达、湿度感应、GPS 定位、语音交互及紧急救援模块，配合电机万向轮实现智能引导。
 
-Empty project using DriverLib.
-This example shows a basic empty project using DriverLib with just main file
-and SysConfig initialization.
+设备具备五大功能：
 
-## Peripherals & Pin Assignments
+1. 障碍物检测：1–300cm 范围内实时预警；
+2. 语音交互：ASRPRO 方案，支持降噪与全向收音；
+3. 湿度感应：监测地面湿滑，预防跌倒；
+4. AI视觉识别：检测红绿灯、电梯、盲道等关键目标；
+5. 定位与联动：GPS+ESP32 上传至服务器，结合高德地图实现位置实时展示。
 
-| Peripheral | Pin | Function |
-| --- | --- | --- |
-| SYSCTL |  |  |
-| DEBUGSS | PA20 | Debug Clock |
-| DEBUGSS | PA19 | Debug Data In Out |
-
-## BoosterPacks, Board Resources & Jumper Settings
-
-Visit [LP_MSPM0G3507](https://www.ti.com/tool/LP-MSPM0G3507) for LaunchPad information, including user guide and hardware files.
-
-| Pin | Peripheral | Function | LaunchPad Pin | LaunchPad Settings |
-| --- | --- | --- | --- | --- |
-| PA20 | DEBUGSS | SWCLK | N/A | <ul><li>PA20 is used by SWD during debugging<br><ul><li>`J101 15:16 ON` Connect to XDS-110 SWCLK while debugging<br><li>`J101 15:16 OFF` Disconnect from XDS-110 SWCLK if using pin in application</ul></ul> |
-| PA19 | DEBUGSS | SWDIO | N/A | <ul><li>PA19 is used by SWD during debugging<br><ul><li>`J101 13:14 ON` Connect to XDS-110 SWDIO while debugging<br><li>`J101 13:14 OFF` Disconnect from XDS-110 SWDIO if using pin in application</ul></ul> |
-
-### Device Migration Recommendations
-This project was developed for a superset device included in the LP_MSPM0G3507 LaunchPad. Please
-visit the [CCS User's Guide](https://software-dl.ti.com/msp430/esd/MSPM0-SDK/latest/docs/english/tools/ccs_ide_guide/doc_guide/doc_guide-srcs/ccs_ide_guide.html#sysconfig-project-migration)
-for information about migrating to other MSPM0 devices.
-
-### Low-Power Recommendations
-TI recommends to terminate unused pins by setting the corresponding functions to
-GPIO and configure the pins to output low or input with internal
-pullup/pulldown resistor.
-
-SysConfig allows developers to easily configure unused pins by selecting **Board**→**Configure Unused Pins**.
-
-For more information about jumper configuration to achieve low-power using the
-MSPM0 LaunchPad, please visit the [LP-MSPM0G3507 User's Guide](https://www.ti.com/lit/slau873).
-
-## Example Usage
-
-Compile, load and run the example.
+该设备的推广能显著提升视障群体的自主出行能力与社会参与度，同时推动无障碍环境建设，体现社会文明与科技进步的结合。
